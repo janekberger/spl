@@ -83,9 +83,9 @@ model_df_corr = foreach(i = seq(cov_vec), .combine=rbind) %dopar% {
 path = getwd()
 jpeg(file = file.path(path, "sim_cov.jpeg"), width = 8.5, height = 6, units = 'in', res = 300)
 model_df_corr %>%
-  filter(term == "x1" | term == "xHat") %>%
+  filter(term == "x1" | term == "x1_2sls") %>%
   ggplot(aes(x = cov_error, y = estimate, group = model, col = model)) +
-  geom_line() + theme_classic() +
+  geom_line(aes(linetype = model)) + theme_classic() +
   labs(x = "Covariance between predictor and error term",
        y = "Estimate of predictor") +
   theme(legend.title = element_blank()) +
@@ -112,9 +112,9 @@ model_df_nobs = foreach(i = seq(n_obs_vec), .combine=rbind) %dopar% {
 # save plot
 jpeg(file = file.path(path, "sim_n.jpeg"), width = 8.5, height = 6, units = 'in', res = 300)
 model_df_nobs %>%
-  filter(term == "x1" | term == "xHat") %>%
-  ggplot(., aes(x = n_obs, y = estimate, group = model, col = model)) +
-  geom_line() + theme_classic() +
+  filter(term == "x1" | term == "x1_2sls") %>%
+  ggplot(aes(x = n_obs, y = estimate, group = model, col = model)) +
+  geom_line(aes(linetype = model)) + theme_classic() +
   labs(x = "Sample size",
        y = "Estimate of predictor") +
   theme(legend.title = element_blank()) +
