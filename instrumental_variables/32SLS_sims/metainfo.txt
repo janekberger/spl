@@ -1,0 +1,6 @@
+Name of Quantlet: IV_2SLS_sims.R
+Published in: Statistical Programming Languages
+Description: Illustrates the 2SLS estimator by simulating the effect of endogeneity, consistency, and the effect of instrument strength
+Keywords: instrumental variables, two-stage least squares, estimator, consistency, endogeneity
+See also: IV_2SLS_empir_ex.R
+Author: Janek Berger
