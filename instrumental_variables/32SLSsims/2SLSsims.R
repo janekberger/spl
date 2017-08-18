@@ -69,6 +69,9 @@ twoStageSim = function(n_obs = NA, cov_error = NA, beta_z1 = NA, beta_z2 = NA){
 
 cat("Running simulation 1...")
 
+# For reproducibility
+set.seed(1234)
+
 # vector of covariances of x1 and error term
 cov_vec = seq(0, 1, length.out = 1000)
 
@@ -80,7 +83,7 @@ model_df_corr = foreach(i = seq(cov_vec), .combine=rbind) %dopar% {
 }
 
 # Save plot
-path = getwd()
+path = "/Users/janekb/Documents/learn/iv/git/spl/instrumental_variables/32SLSsims"
 jpeg(file = file.path(path, "sim_cov.jpeg"), width = 8.5, height = 6, units = 'in', res = 300)
 model_df_corr %>%
   filter(term == "x1" | term == "x1_2sls") %>%
